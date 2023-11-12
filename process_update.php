@@ -1,0 +1,46 @@
+<?php
+include('config.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $telepon = $_POST['telepon'];
+    $email = $_POST['email'];
+    $website = $_POST['web'];
+    $pendidikan = $_POST['pendidikan'];
+    $keterampilan = $_POST['keterampilan'];
+
+    // Tambahkan field lainnya sesuai kebutuhan
+
+    // Prepare the statement
+    $query = $conn->prepare("UPDATE cv_data SET 
+    nama=?, 
+    alamat=?, 
+    telepon=?, 
+    email=?, 
+    web=?, 
+    pendidikan=?, 
+    keterampilan=?
+    WHERE id=?");
+
+// Bind parameters
+    $query->bind_param("sssssssi", $nama, $alamat, $telepon, $email, $website, $pendidikan, $keterampilan, $id);
+
+    // Execute the statement
+    if ($query->execute()) {
+        // Tambahkan parameter update ke URL
+        header("Location: index.php?update=success");
+    } else {
+        echo "Error: " . $query->error;
+    }
+
+    // Close the statement
+    $query->close();
+} else {
+    echo "Invalid request.";
+}
+
+// Close the connection
+$conn->close();
+?>
