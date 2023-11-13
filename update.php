@@ -2,19 +2,20 @@
 <html>
 <head>
     <title>Update CV Data</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand" href="#">Update CV</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">Logout</a>
-            </li>
-        </ul>
-    </nav>
+<nav class="navbar fixed-top" style="background: #003147">
+    <div class="container-fluid">
+        <a class="navbar-brand" style="color: white">Curriculum Vitae</a>
+        <form class="d-flex" role="search">
+            <a href="logout.php" class="btn btn-primary" type="button">Logout</a>
+        </form>
+    </div>
+</nav>
 
-    <div class="container my-4">
+    <div class="container my-4 pt-5">
         <h1>Update CV Data</h1>
         <?php
         // Melakukan koneksi ke database
@@ -33,6 +34,7 @@
             $website_dari_database = $row["web"];
             $pendidikan_dari_database = $row["pendidikan"];
             $keterampilan_dari_database = $row["keterampilan"];
+            $foto_path_dari_database = $row["foto_path"];
             $id_dari_database = $row['id'];
             // Mengambil data lainnya
         } else {
@@ -73,13 +75,17 @@
                 <label for="keterampilan">Keterampilan:</label>
                 <input type="text" class="form-control" id="keterampilan" name="keterampilan" value="<?php echo $keterampilan_dari_database; ?>">
             </div>
+            <div class="form-group">
+                <label for="foto_path">Foto Path:</label>
+                <input type="text" class="form-control" id="foto_path" name="foto_path" value="<?php echo $foto_path_dari_database; ?>">
+            </div>
             <!-- Tambahkan form untuk kolom-kolom lainnya di sini -->
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
         </form>
     </div>
 
     <footer class="bg-light text-center py-2">
-        &copy; <?php echo date('Y'); ?> Curriculum Vitae Saya
+        &copy; 2023 dixxyy. All rights reserved
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

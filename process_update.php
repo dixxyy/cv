@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $website = $_POST['web'];
     $pendidikan = $_POST['pendidikan'];
     $keterampilan = $_POST['keterampilan'];
+    $foto_path = $_POST['foto_path'];
 
     // Tambahkan field lainnya sesuai kebutuhan
 
@@ -21,11 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     email=?, 
     web=?, 
     pendidikan=?, 
-    keterampilan=?
+    keterampilan=?,
+    foto_path=?
     WHERE id=?");
 
 // Bind parameters
-    $query->bind_param("sssssssi", $nama, $alamat, $telepon, $email, $website, $pendidikan, $keterampilan, $id);
+    $query->bind_param("ssssssssi", $nama, $alamat, $telepon, $email, $website, $pendidikan, $keterampilan, $foto_path, $id);
 
     // Execute the statement
     if ($query->execute()) {
